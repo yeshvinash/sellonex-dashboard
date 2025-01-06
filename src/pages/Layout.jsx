@@ -10,18 +10,22 @@ const LayoutWrap = styled.section`
   color: var(--white);
   display: flex;
   width: 100%;
-  min-height: 100vh;
-  /* height: 100vh; */
   padding: 14px;
 `;
 
 const Main = styled.div`
   width: calc(100% - 220px);
   padding-left: 14px;
-  /* margin-left: 220px; */
   display: flex;
   flex-direction: column;
   height: inherit;
+  @media screen and (max-width: 1199px) {
+    width: calc(100% - 190px);
+  }
+  @media screen and (max-width: 991px) {
+    width: 100%;
+    padding-left: 0;
+  }
 `;
 
 const Layout = () => {

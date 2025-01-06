@@ -4,7 +4,6 @@ export const SidebarMain = styled.section`
   position: sticky;
   top: 0;
   width: 220px;
-  height: 100%;
   flex-shrink: 0;
 `;
 export const SidebarLogo = styled.div`
@@ -28,9 +27,10 @@ export const SidebarWrap = styled.div`
   border-radius: 8px;
   border: 1px solid var(--light-gray-tint-1);
   overflow-y: auto;
-  height: 100vh;
+  /* height: 100vh; */
   display: flex;
   flex-direction: column;
+  height: 100%;
 
   h5 {
     font-size: 16px;
@@ -79,5 +79,31 @@ export const SidebarWrap = styled.div`
     padding-top: 16px;
     border-top: 1px solid var(--dark-gray);
     margin-top: auto;
+  }
+`;
+
+export const ResponsiveMediaQuery = styled.div`
+  @media screen and (max-width: 1279px) {
+    ${SidebarWrap} {
+    }
+    ${SidebarLogo} {
+      margin-bottom: 22px;
+    }
+  }
+  @media screen and (max-width: 1199px) {
+    ${SidebarMain} {
+      width: 190px;
+    }
+    ${SidebarLogo} {
+      margin-bottom: 22px;
+      .ant-image {
+        width: 150px;
+      }
+    }
+  }
+  @media screen and (max-width: 991px) {
+    ${SidebarMain} {
+      display: none;
+    }
   }
 `;

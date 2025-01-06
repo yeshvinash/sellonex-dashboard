@@ -82,7 +82,6 @@ export const DashboardMainWrap = styled.div`
   display: grid;
   grid-template-columns: 750px auto;
   grid-gap: 14px;
-  /* display: flex; */
   margin-bottom: 14px;
 `;
 
@@ -304,6 +303,67 @@ export const CountriesCustomerDeviceWrap = styled.div`
       width: 100%;
       height: 100%;
       object-fit: fill;
+    }
+  }
+`;
+
+export const ResponsiveMediaQuery = styled.div`
+  @media screen and (max-width: 1279px) {
+    ${TransactionsTargetWrap} {
+      grid-template-columns: 100%;
+    }
+    ${DashboardMainWrap} {
+      grid-template-columns: 100%;
+    }
+  }
+  @media screen and (max-width: 991px) {
+    ${CountriesCustomerDeviceWrap} {
+      grid-template-columns: 100%;
+    }
+    ${RevenueSalesWrap} {
+      grid-template-columns: 100%;
+    }
+  }
+  @media screen and (max-width: 575px) {
+    ${TitleWrap} {
+      h6,
+      p {
+        font-size: 13px;
+      }
+    }
+    ${RevenueSalesWrap} {
+      .revenue-number-wrap {
+        h4,
+        .h4 {
+          font-size: 24px;
+        }
+        p {
+          font-size: 11px;
+        }
+      }
+    }
+    ${CountriesCustomerDeviceWrap} {
+      .country-content-wrap {
+        .number {
+          font-size: 17px;
+        }
+        img {
+          width: 20px;
+          height: 20px;
+        }
+      }
+      .device-carditem {
+        p {
+          font-size: 18px;
+        }
+      }
+
+      .revenue-number-wrap {
+        h4,
+        .h4 {
+          font-size: 24px;
+        }
+      }
     }
   }
 `;
