@@ -1,42 +1,182 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* default css start */
+
+:root {
+  /* Fonts */
+  --primary-font: "Inter", sans-serif;
+  /* Theme Colors */
+  --white: #ffffff;
+  --black: #000000;
+  --light-gray: #939393;
+  --light-gray-tint-1: #2f2f2f;
+  --dark-gray: #3d3d3d;
+  --black-tint-1: #171717;
+  --black-tint-2: #262626;
+  --black-tint-3: #323232;
+  --sky-blue: #4ad9f9;
+  --light-green: #22d780;
+  --dark-green: #24774f;
+  --dark-red: #501e1e;
+  --red: #e94e4e;
+  --yellow: #e7b944;
+  --purple: #8316f0;
+}
+/* Font-family */
+
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/webfonts/Inter-Light.woff2") format("woff2"),
+    url("./assets/webfonts/Inter-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/webfonts/Inter-Regular.woff2") format("woff2"),
+    url("./assets/webfonts/Inter-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/webfonts/Inter-SemiBold.woff2") format("woff2"),
+    url("./assets/webfonts/Inter-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+html {
+  font-size: 10px;
+  scroll-behavior: smooth;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.card {
-  padding: 2em;
+body {
+  font-family: var(--primary-font) !important;
+  color: var(--white);
+  font-size: 16px;
+  line-height: 1.3;
+  font-weight: 400;
+  background-color: var(--black-tint-1);
+  overflow-x: hidden;
 }
 
-.read-the-docs {
-  color: #888;
+/* Font Weight */
+
+.fw-300 {
+  font-weight: 300;
 }
+.fw-400 {
+  font-weight: 400;
+}
+.fw-600 {
+  font-weight: 600;
+}
+
+.primary-font {
+  font-family: var(--primary-font);
+}
+
+/* Text Color Class */
+.text-white {
+  color: var(--white);
+}
+
+.text-black {
+  color: var(--black);
+}
+
+.text-light-gray {
+  color: var(--light-gray);
+}
+
+.text-light-gray-tint-1 {
+  color: var(--light-gray-tint-1);
+}
+
+.text-light-green {
+  color: var(--light-green);
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+  -webkit-transition: 0.3s all;
+  -o-transition: 0.3s all;
+  transition: 0.3s all;
+  -moz-transition: 0.3s all;
+  -ms-transition: 0.3s all;
+}
+
+ul,
+ol {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.card-bg {
+  height: 100%;
+  padding: 14px;
+  border-radius: 8px;
+  background-color: var(--black-tint-2);
+  border: 1px solid var(--light-gray-tint-1);
+  -webkit-box-shadow: 0px 2px 4px 0px #22222229;
+  box-shadow: 0px 2px 4px 0px #22222229;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.d-align {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.d-align-center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.d-align-between {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+.text-ellipsis {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+/* default css end */
