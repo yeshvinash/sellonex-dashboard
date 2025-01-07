@@ -11,6 +11,9 @@ const LayoutWrap = styled.section`
   display: flex;
   width: 100%;
   padding: 14px;
+  @media screen and (max-width: 575px) {
+    padding: 12px;
+  }
 `;
 
 const Main = styled.div`

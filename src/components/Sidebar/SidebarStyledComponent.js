@@ -27,7 +27,6 @@ export const SidebarWrap = styled.div`
   border-radius: 8px;
   border: 1px solid var(--light-gray-tint-1);
   overflow-y: auto;
-  /* height: 100vh; */
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -49,7 +48,7 @@ export const SidebarWrap = styled.div`
     border: none;
     font-weight: 400;
     background: transparent;
-    transition: 0.3 ease all;
+    transition: 0.3s all ease;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -79,6 +78,12 @@ export const SidebarWrap = styled.div`
     padding-top: 16px;
     border-top: 1px solid var(--dark-gray);
     margin-top: auto;
+    .nav-link {
+      &.active {
+        color: var(--white);
+        background: var(--red);
+      }
+    }
   }
 `;
 

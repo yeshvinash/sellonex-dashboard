@@ -180,3 +180,8 @@ ol {
 }
 
 /* default css end */
+@media screen and (max-width: 575px) {
+  .card-bg {
+    padding: 12px;
+  }
+}

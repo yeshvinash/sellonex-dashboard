@@ -83,6 +83,18 @@ export const DashboardMainWrap = styled.div`
   grid-template-columns: 750px auto;
   grid-gap: 14px;
   margin-bottom: 14px;
+  .header-content-wrap {
+    display: none;
+    h1 {
+      font-weight: 600;
+      font-size: 26px;
+    }
+    p {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--light-gray);
+    }
+  }
 `;
 
 export const DashboardMainLeftWrap = styled.div`
@@ -306,7 +318,7 @@ export const CountriesCustomerDeviceWrap = styled.div`
     }
   }
 `;
-
+// Responsive Media Query
 export const ResponsiveMediaQuery = styled.div`
   @media screen and (max-width: 1279px) {
     ${TransactionsTargetWrap} {
@@ -323,8 +335,31 @@ export const ResponsiveMediaQuery = styled.div`
     ${RevenueSalesWrap} {
       grid-template-columns: 100%;
     }
+    ${DashboardMainWrap} {
+      .header-content-wrap {
+        display: block;
+        h1 {
+          font-size: 22px;
+        }
+        p {
+          font-size: 12px;
+        }
+      }
+    }
   }
   @media screen and (max-width: 575px) {
+    ${TransactionsTargetWrap} {
+      grid-gap: 12px;
+    }
+    ${DashboardMainWrap} {
+      grid-gap: 12px;
+      margin-bottom: 12px;
+    }
+    ${DashboardMainRightWrap} {
+      & > div:not(:last-child) {
+        margin-bottom: 12px;
+      }
+    }
     ${TitleWrap} {
       h6,
       p {
@@ -332,6 +367,8 @@ export const ResponsiveMediaQuery = styled.div`
       }
     }
     ${RevenueSalesWrap} {
+      grid-gap: 12px;
+
       .revenue-number-wrap {
         h4,
         .h4 {
@@ -343,6 +380,9 @@ export const ResponsiveMediaQuery = styled.div`
       }
     }
     ${CountriesCustomerDeviceWrap} {
+      grid-gap: 12px;
+      margin-top: 12px;
+
       .country-content-wrap {
         .number {
           font-size: 17px;
@@ -363,6 +403,14 @@ export const ResponsiveMediaQuery = styled.div`
         .h4 {
           font-size: 24px;
         }
+      }
+    }
+    ${RevenueSourceSliderWrap} {
+      .slider-title-wrap {
+        padding: 12px 10px;
+      }
+      .title {
+        font-size: 13px;
       }
     }
   }

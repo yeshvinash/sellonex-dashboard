@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import CustomSelect from "../CustomSelect/CustomSelect";
 import {
   CountriesCustomerDeviceWrap,
   DashboardMainLeftWrap,
@@ -12,13 +11,16 @@ import {
   TitleWrap,
   TransactionsTargetWrap,
 } from "./DashboardStyledComponent";
-import ProductTable from "../TransactionsTable/TransactionsTable";
 import SVGIcons from "../Data/SVGIcons";
-import RevenueSourcesSlider from "../RevenueSourcesSlider/RevenueSourcesSlider";
-import AreaChart from "../LineChart/LineChart";
 import User from "../../assets/images/icons/user.svg";
 import MapImg from "../../assets/images/cover/map.png";
-import SalesChart from "../BarChart/BarChart";
+import {
+  SalesChart,
+  RevenueSourcesSlider,
+  ProductTable,
+  AreaChart,
+  CustomSelect,
+} from "../../components";
 import {
   CountryData,
   DeviceData,
@@ -38,6 +40,10 @@ const Dashboard = () => {
   return (
     <ResponsiveMediaQuery>
       <DashboardMainWrap>
+        <div className="header-content-wrap">
+          <h1 className="text-ellipsis">Good Morning, Bryan</h1>
+          <p>Manage your order and sells with your dashboard</p>
+        </div>
         <DashboardMainLeftWrap>
           <RevenueSalesWrap>
             <div className="card-bg">

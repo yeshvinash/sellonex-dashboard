@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   GlobalStyle,
@@ -9,63 +9,19 @@ import {
   ResponsiveMediaQuery,
   SearchBarWrap,
   ToggleButton,
+  StyledDropdown,
 } from "./HeaderStyledComponent";
 import { SidebarWrap } from "../Sidebar/SidebarStyledComponent";
 import SVGIcons from "../Data/SVGIcons";
-import { Dropdown, Space, Avatar, Image } from "antd";
+import { Space, Avatar, Image } from "antd";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/images/logo/logo.svg";
-import styled from "styled-components";
+import SearchBar from "../SearchBar";
 
-const StyledDropdown = styled(Dropdown)`
-  font-family: var(--primary-font);
-  cursor: pointer;
-  &.profile {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 160px;
-    .profile-wrap {
-      display: flex;
-      align-items: center;
-      .ant-avatar {
-        width: 38px;
-        height: 38px;
-        flex-shrink: 0;
-        margin-right: 8px;
-
-        @media screen and (max-width: 1199px) {
-          width: 34px;
-          height: 34px;
-        }
-      }
-      .profile-name {
-        font-weight: 400;
-        font-size: 13px;
-        color: var(--white);
-        -webkit-line-clamp: 2;
-        word-break: break-word;
-      }
-      .profile-role {
-        font-size: 11px;
-        word-break: break-word;
-        color: var(--light-gray);
-      }
-    }
-    .arrow-icon {
-      width: 10px;
-      flex-shrink: 0;
-      height: auto;
-      svg {
-        width: 100%;
-        height: 100%;
-      }
-    }
-  }
-`;
 const Header = () => {
   const [activeLink, setActiveLink] = useState("home");
   const [userState, setUserState] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [currentUser, setCurrentUser] = useState({
     name: "Bryan Regon",
     role: "Administrator",
@@ -105,6 +61,44 @@ const Header = () => {
       </Space>
     ),
   }));
+
+  // First useEffect to calculate Header Height
+  useEffect(() => {
+    const updateHeaderHeight = () => {
+      const headerElement = document.getElementById("header");
+      const spaceTop = document.querySelector(".header-space");
+      spaceTop.style.paddingTop = `${headerElement.offsetHeight}px`;
+    };
+
+    updateHeaderHeight();
+
+    const handleResize = () => {
+      updateHeaderHeight();
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // Second useEffect run to  Header Height
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 30) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const toggleMenu = () => {
     const body = document.querySelector("html");
     setUserState(!userState);
@@ -114,7 +108,7 @@ const Header = () => {
     <>
       <ResponsiveMediaQuery>
         <GlobalStyle />
-        <Container id="header">
+        <Container id="header" className={isScrolled ? "scrolled" : ""}>
           <HeaderWrap>
             <div className="d-align header-logo-wrap">
               <HeaderLogo>
@@ -131,14 +125,7 @@ const Header = () => {
             </div>
             <HeaderRightWrap>
               <SearchBarWrap>
-                <div className="searchbar-input">
-                  <input
-                    type="text"
-                    className="custom-input"
-                    placeholder="Search here..."
-                  />
-                  <span className="search-icon">{SVGIcons.Search}</span>
-                </div>
+                <SearchBar />
                 <div>
                   <Link>{SVGIcons.Notification}</Link>
                 </div>
@@ -294,6 +281,7 @@ const Header = () => {
             </SidebarWrap>
           </HeaderWrap>
         </Container>
+        <div className="header-space"></div>
       </ResponsiveMediaQuery>
     </>
   );

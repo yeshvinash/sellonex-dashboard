@@ -58,33 +58,38 @@ const StyledTable = styled(Table)`
   }
 `;
 export const ResponsiveMediaQuery = styled.div`
-  ${StyledTable} {
-    .ant-table-thead {
-      th {
-        font-size: 12px;
-        padding: 10px;
-      }
-    }
-    .ant-table-tbody {
-      tr {
-        td {
+  @media screen and (max-width: 991px) {
+    ${StyledTable} {
+      .ant-table-thead {
+        th {
           font-size: 12px;
-          min-width: 100px;
-          max-width: 100px;
           padding: 10px;
-          &:nth-child(2) {
-            min-width: 250px;
-            max-width: 250px;
-          }
-          &:nth-child(3) {
-            min-width: 120px;
-            max-width: 120px;
+        }
+      }
+      .ant-table-tbody {
+        tr {
+          td {
+            font-size: 12px;
+            min-width: 100px;
+            max-width: 100px;
+            padding: 10px;
+            &:nth-child(2) {
+              min-width: 250px;
+              max-width: 250px;
+            }
+            &:nth-child(3) {
+              min-width: 120px;
+              max-width: 120px;
+            }
+            .ant-tag {
+              font-size: 12px;
+            }
           }
         }
       }
-    }
-    .ant-table-container {
-      overflow-x: auto;
+      .ant-table-container {
+        overflow-x: auto;
+      }
     }
   }
 `;

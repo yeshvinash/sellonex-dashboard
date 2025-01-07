@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
+import { Dropdown } from "antd";
 import { SidebarWrap } from "../Sidebar/SidebarStyledComponent";
 
 export const Container = styled.header`
@@ -10,10 +11,13 @@ export const Container = styled.header`
     display: none;
   }
 `;
+
 export const HeaderLogo = styled.div`
   width: 168px;
   height: auto;
-  z-index: 5;
+  z-index: 99;
+  padding-right: 20px;
+  border-right: 1px solid var(--light-gray-tint-1);
 
   .ant-image {
     display: block;
@@ -49,34 +53,6 @@ export const SearchBarWrap = styled.div`
   & > div:not(:last-child) {
     margin-right: 10px;
   }
-  .searchbar-input {
-    position: relative;
-    .custom-input {
-      font-family: var(--primary-font);
-      width: 320px;
-      padding: 11px 16px 11px 35px;
-      border: none;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 400;
-      background: var(--black-tint-2);
-      outline: none;
-      border: 1px solid var(--light-gray-tint-1);
-      color: var(--white);
-    }
-    .search-icon {
-      color: var(--light-gray);
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      left: 11px;
-      display: flex;
-      svg {
-        width: 16px;
-        height: 16px;
-      }
-    }
-  }
   a {
     display: flex;
     align-items: center;
@@ -94,6 +70,7 @@ export const SearchBarWrap = styled.div`
     }
   }
 `;
+
 export const HeaderRightWrap = styled.div`
   display: flex;
   align-items: center;
@@ -164,6 +141,10 @@ export const HamburgerLine = styled.div`
 `;
 
 export const GlobalStyle = createGlobalStyle`
+    .header-space{
+      display: none;
+    }
+
   @media screen and (max-width: 991px) {
     html.show-menu {
       overflow: hidden;
@@ -171,7 +152,7 @@ export const GlobalStyle = createGlobalStyle`
         height: 100%;
       }
       &:after {
-          content: "";
+      content: "";
       position: fixed;
       height: 100%;
       width: 100%;
@@ -184,16 +165,57 @@ export const GlobalStyle = createGlobalStyle`
     ${ToggleButton} { 
       display: block;
     }
+    .header-space{
+      display: block;
+    }
 }
 `;
 
-export const ResponsiveMediaQuery = styled.div`
-  @media screen and (max-width: 1279px) {
-    ${SearchBarWrap} {
-      .custom-input {
-        max-width: 280px;
+export const StyledDropdown = styled(Dropdown)`
+  font-family: var(--primary-font);
+  cursor: pointer;
+  &.profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 160px;
+    .profile-wrap {
+      display: flex;
+      align-items: center;
+      .ant-avatar {
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
+        margin-right: 8px;
+      }
+      .profile-name {
+        font-weight: 400;
+        font-size: 13px;
+        color: var(--white);
+        -webkit-line-clamp: 2;
+        word-break: break-word;
+      }
+      .profile-role {
+        font-size: 11px;
+        word-break: break-word;
+        color: var(--light-gray);
       }
     }
+    .arrow-icon {
+      width: 10px;
+      flex-shrink: 0;
+      height: auto;
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+`;
+
+// Responsive Media Query
+export const ResponsiveMediaQuery = styled.div`
+  @media screen and (max-width: 1279px) {
     ${HeaderWrap} {
       h1 {
         font-size: 22px;
@@ -204,17 +226,22 @@ export const ResponsiveMediaQuery = styled.div`
     }
   }
   @media screen and (max-width: 1199px) {
-    ${SearchBarWrap} {
-      .custom-input {
-        max-width: 220px;
-      }
-    }
     ${HeaderWrap} {
       h1 {
         font-size: 20px;
       }
       p {
         font-size: 10px;
+      }
+    }
+    ${StyledDropdown} {
+      &.profile {
+        .profile-wrap {
+          .ant-avatar {
+            width: 34px;
+            height: 34px;
+          }
+        }
       }
     }
     ${SearchBarWrap} {
@@ -233,12 +260,24 @@ export const ResponsiveMediaQuery = styled.div`
     }
   }
   @media screen and (max-width: 991px) {
+    ${Container} {
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 14px;
+      z-index: 99;
+      margin-bottom: 0;
+      &.scrolled {
+        background-color: var(--black-tint-1);
+      }
+    }
     .header-content-wrap {
       display: none;
     }
     ${HeaderWrap} {
       .header-logo-wrap {
         ${HeaderLogo} {
+          width: 150px;
           display: block;
         }
       }
@@ -246,28 +285,149 @@ export const ResponsiveMediaQuery = styled.div`
     ${ToggleButton} {
       display: block;
     }
-  }
-  ${SidebarWrap} {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 60%;
-    overflow: auto;
-    text-align: center;
-    z-index: 10;
-    height: 100vh;
-    display: block;
-    padding: 80px 30px 30px;
-    border: none;
-    background-color: var(--black-tint-1);
-    transition: all 0.7s ease 0s;
-    transform: translateX(110%);
-    .show-menu & {
-      transform: translateX(0%);
+
+    ${SidebarWrap} {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 60%;
+      overflow: auto;
+      text-align: center;
+      z-index: 10;
+      height: 100vh;
+      display: block;
+      padding: 60px 30px 30px;
+      border: none;
+      background-color: var(--black-tint-1);
+      transition: all 0.7s ease 0s;
+      transform: translateX(110%);
+      .show-menu & {
+        transform: translateX(0%);
+      }
+      li {
+        max-width: 220px;
+      }
+      .logout-wrap {
+        a {
+          max-width: 220px;
+        }
+      }
     }
-    /* .nav-link {
-      width: 200px;
-    } */
+  }
+  @media screen and (max-width: 575px) {
+    ${Container} {
+      padding: 12px;
+    }
+    ${SidebarWrap} {
+      width: 100%;
+    }
+    ${StyledDropdown} {
+      &.profile {
+        width: 90px;
+        .profile-wrap {
+          .profile-name {
+            width: 3ch;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            font-size: 12px;
+          }
+          .profile-role {
+            width: 5ch;
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            font-size: 11px;
+          }
+        }
+      }
+    }
+    ${HeaderWrap} {
+      .header-logo-wrap {
+        ${HeaderLogo} {
+          padding-right: 10px;
+          width: 130px;
+        }
+      }
+    }
+    ${SearchBarWrap} {
+      & > div:not(:last-child) {
+        margin-right: 6px;
+      }
+      padding-right: 10px;
+      margin-right: 10px;
+      a {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+  @media screen and (max-width: 480px) {
+    ${HeaderWrap} {
+      .header-logo-wrap {
+        ${HeaderLogo} {
+          width: 110px;
+        }
+      }
+    }
+    ${StyledDropdown} {
+      &.profile {
+        width: 70px;
+        .profile-wrap {
+          .ant-avatar {
+            width: 30px;
+            height: 30px;
+            margin-right: 4px;
+          }
+          .profile-name {
+            font-size: 11px;
+          }
+          .profile-role {
+            font-size: 10px;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 374px) {
+    ${HeaderWrap} {
+      .header-logo-wrap {
+        ${HeaderLogo} {
+          border-right: none;
+          width: 100px;
+        }
+      }
+    }
+    ${StyledDropdown} {
+      &.profile {
+        width: 50px;
+        .profile-wrap {
+          .ant-avatar {
+            width: 26px;
+            height: 26px;
+          }
+          .profile-name {
+            font-size: 10px;
+          }
+          .profile-role {
+            font-size: 8px;
+          }
+        }
+      }
+    }
+    ${SearchBarWrap} {
+      padding-right: 8px;
+      margin-right: 8px;
+      a {
+        width: 28px;
+        height: 28px;
+        svg {
+          width: 14px;
+          height: 14px;
+        }
+      }
+    }
   }
 `;

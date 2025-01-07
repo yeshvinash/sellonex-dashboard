@@ -13,7 +13,10 @@ const StyledChartContainer = styled.div`
 
   .chart {
     width: 100%;
-    height: 120px;
+    height: 140px;
+    @media screen and (max-width: 575px) {
+      height: 120px;
+    }
     canvas {
       width: 100%;
       height: 100%;
