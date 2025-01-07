@@ -46,4 +46,4 @@ To run the project locally, follow these steps:
 
 ## Deploy Web APP
 
-[ezee-analytics](https://ezee-inaalytics.netlify.app/)
+[sellonex-dashboard](https://sellonex.netlify.app/)
